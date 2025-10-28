@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<title>Portfólio - Kitsu</title>
 </head>
 <body>
-	
+	<header>
+		<nav class="navbar">
+			<div class="menu-toggle" id="menu-toggle">
+				☰
+			</div>
+			<ul class="nav-links" id="nav-links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="Games.html">Games</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="perfil-container">
+			<img id="Perfil" src="assets/images/perfil.png" alt="Minha imagem de perfil">
+			
+			<div class="perfil-texto">
+				<h1>Kitsu</h1>
+				<h2>Carlos Vinicius</h2>
+			</div>
+		</section>
+
+		<h3>Projetos</h3>
+	</main>
+
+	<footer>
+        <p>Instagram: <a href="#">Kitsu__42</a></p>
+        <p>Linkedin: <a href="https://www.linkedin.com/in/carlos-vinicius-de-oliveira-lima-55bb5320b/">Carlos Vinicius</a></p>
+    </footer>
+
+	<script>
+		// Script para expandir/recolher o menu
+		document.getElementById('menu-toggle').addEventListener('click', function() {
+			document.getElementById('nav-links').classList.toggle('active');
+		});
+	</script>
 </body>
 </html>
