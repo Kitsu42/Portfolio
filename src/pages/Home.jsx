@@ -1,5 +1,6 @@
 import CardProject from "../components/CardProject";
 import perfilFoto from "../assets/perfilFoto.png";
+import StackSection from "../components/StackSection";
 
 export default function Home() {
   return (
@@ -17,9 +18,9 @@ export default function Home() {
           <p>Estudante de programação criando um portifolio</p>
         </div>
       </div>
-
+      <StackSection></StackSection>
       <h2>Projetos</h2>
-      <CardProject title="Dowload de musica" desc="Um sistema simples para baixar musicar do youtube." link="#" />
+      <CardProject title="Dowload de musica" desc="Um sistema simples para baixar musicar do youtube." link="https://github.com/Kitsu42/musicDownloader" />
     </div>
   );
 }
