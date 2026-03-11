@@ -77,12 +77,12 @@ h1,h2,h3{
 
 .hero-content{
   display:flex;
-  align-items:center;
+  align-items:top;
   gap:2rem;
 }
 
 .hero-photo{
-  width:150px;
+  width:250px;
   border-radius:15%;
 }
 
@@ -97,7 +97,7 @@ h1,h2,h3{
     0 0 10px var(--primary),
     0 0 20px var(--primary);
   margin:3rem auto;
-  width:80%;
+  width:90%;
 }
 
 

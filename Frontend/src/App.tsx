@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout"; 
 import Home from "./pages/Home/Home";
-import Articles from "./pages/articles/Articles";
+//import Articles from "./pages/articles/Articles";
 // adicione outras páginas conforme necessário
 
 export default function App() {
@@ -10,7 +10,6 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/articles" element={<Articles />} />
         {/* adicione mais rotas aqui */}
       </Route>
     </Routes>
