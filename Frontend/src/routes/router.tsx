@@ -1,13 +1,14 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from '../pages/Home/Home'
-//import Projects from '../pages/Projects/Projects'
-//import Games from '../pages/Games/Games'
-//import Articles from '../pages/Articles/Articles'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from '../pages/Home/Home';
+import Articles from '../pages/articles/Articles ';
 
 export default function Router() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/articles" element={<Articles />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
