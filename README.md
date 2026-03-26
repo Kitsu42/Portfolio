@@ -77,4 +77,4 @@ This is a simple portfolio project that I am redoing.
     │           ├── markdown.d.ts          # Tipagem para importação de markdown
     │           └── vite-env.d.ts          # Tipagens do ambiente Vite
     │
-└── README.md
+    └── README.md

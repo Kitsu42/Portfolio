@@ -52,26 +52,139 @@ h1,h2,h3{
 }
 /* NAVBAR */
 
-.navbar{
-  background:var(--surface);
+.navbar {
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
 }
 
-.navbar-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
 }
 
-.nav-links{
-  display:flex;
-  gap:2rem;
-  list-style:none;
+.logo {
+  font-family: var(--font-title);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.menu-btn{
-  display:none;
+.logo-link {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
+.logo-link:hover {
+  color: var(--primary);
+}
+
+/* Desktop Slide Tabs */
+.nav-links.desktop {
+  display: none;
+  position: relative;
+  padding: 6px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 9999px;
+  border: 2px solid rgba(56, 189, 248, 0.2);
+  gap: 4px;
+}
+
+@media (min-width: 768px) {
+  .nav-links.desktop {
+    display: flex;
+  }
+}
+
+.tab-item {
+  position: relative;
+  z-index: 10;
+  list-style: none;
+}
+
+.tab-link {
+  display: block;
+  padding: 12px 20px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.tab-link:hover {
+  color: var(--primary);
+}
+
+.tab-link.active {
+  color: white;
+}
+
+/* Cursor deslizante (efeito neon) */
+.cursor-slide {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  background: linear-gradient(90deg, var(--primary), #7dd3fc);
+  border-radius: 9999px;
+  z-index: 0;
+  box-shadow: 
+    0 0 12px var(--primary),
+    0 0 25px rgba(56, 189, 248, 0.6);
+  mix-blend-mode: normal;
+}
+
+/* Mobile Menu */
+.nav-links.mobile {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  flex-direction: column;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  border-top: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.nav-links.mobile.open {
+  display: flex;
+}
+
+.nav-links.mobile a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+}
+
+.nav-links.mobile a.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.menu-btn {
+  display: block;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 8px;
+}
+
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none;
+  }
+}
 
 /* HERO */
 
