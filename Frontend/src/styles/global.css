@@ -254,3 +254,55 @@ h1,h2,h3{
   transform:scale(1.2);
   filter:drop-shadow(0 0 6px var(--primary));
 }
+
+/* UNDER CONSTRUCTION */
+
+.construction-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.construction-content {
+  max-width: 600px;
+}
+
+.construction-icon {
+  font-size: 6rem;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.construction-page h1 {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.construction-page p {
+  font-size: 1.25rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.back-home-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--primary);
+  color: var(--background);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.3s;
+}
+
+.back-home-btn:hover {
+  background: #7dd3fc;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+}

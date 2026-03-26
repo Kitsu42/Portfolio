@@ -1,5 +1,6 @@
-import Navbar from "../../components/layout/Navbar";
-//Under construction
+import UnderConstruction from "../../components/ui/UnderConstruction";
 export default function Articles () {
-    return <div>Projects (em construção)</div>;
+    return(
+        <UnderConstruction/>
+    );
 }
