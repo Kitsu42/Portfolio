@@ -13,14 +13,6 @@ export default function Home(){
 
       <TechStack />
 
-      <NeonDivider />
-
-      <FeaturedArticles />
-
-      <NeonDivider />
-
-      <FeaturedProjects />
-
     </>
   )
 
