@@ -1,10 +1,8 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [position, setPosition] = useState({ left: 0, width: 0, opacity: 0 });
 
   const tabs = [
     { name: "Home", path: "/" },
@@ -32,26 +30,16 @@ export default function Navbar() {
           ☰
         </button>
 
-        {/* Desktop - Slide Tabs */}
-        <ul
-          className="nav-links desktop"
-          onMouseLeave={() =>
-            setPosition((prev) => ({ ...prev, opacity: 0 }))
-          }
-        >
+        {/* Desktop */}
+        <ul className="nav-links desktop">
           {tabs.map((tab) => (
-            <Tab
-              key={tab.path}
-              to={tab.path}
-              setPosition={setPosition}
-            >
+            <Tab key={tab.path} to={tab.path}>
               {tab.name}
             </Tab>
           ))}
-          <Cursor position={position} />
         </ul>
 
-        {/* Mobile Menu */}
+        {/* Mobile */}
         <ul className={`nav-links mobile ${open ? "open" : ""}`}>
           {tabs.map((tab) => (
             <li key={tab.path}>
@@ -70,46 +58,22 @@ export default function Navbar() {
   );
 }
 
-// Componente Tab reutilizável
-const Tab = ({
-  children,
-  to,
-  setPosition,
-}: {
-  children: React.ReactNode;
-  to: string;
-  setPosition: (pos: any) => void;
-}) => {
-  const ref = useRef<HTMLLIElement>(null);
-
+const Tab = ({ children, to }: { children: React.ReactNode; to: string }) => {
   return (
-    <li
-      ref={ref}
-      className="tab-item"
-      onMouseEnter={() => {
-        if (!ref.current) return;
-        const { width } = ref.current.getBoundingClientRect();
-        setPosition({
-          left: ref.current.offsetLeft,
-          width,
-          opacity: 1,
-        });
-      }}
-    >
-      <NavLink to={to} className="tab-link">
-        {children}
+    <li className="tab-item">
+      <NavLink
+        to={to}
+        className={({ isActive }) =>
+          `outline-link ${isActive ? "active" : ""}`
+        }
+      >
+        <span>{children}</span>
+
+        <span className="outline top" />
+        <span className="outline right" />
+        <span className="outline bottom" />
+        <span className="outline left" />
       </NavLink>
     </li>
-  );
-};
-
-// Cursor deslizante
-const Cursor = ({ position }: { position: any }) => {
-  return (
-    <motion.li
-      animate={position}
-      className="cursor-slide"
-      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-    />
   );
 };
