@@ -127,20 +127,14 @@ export default developer;`}</pre>
               </h2>
               <div className="space-y-4 text-slate-400 text-[0.95rem] leading-relaxed">
                 <p>
-                  Com mais de 6 anos de experiência em desenvolvimento full stack, trabalho principalmente com arquiteturas baseadas em TypeScript e Go, criando tanto interfaces ricas em React quanto APIs de alta performance.
-                </p>
-                <p>
-                  Nas horas livres, escrevo artigos técnicos sobre temas como otimização de banco de dados, compiladores e design de linguagens, e construo jogos de navegador como hobby de engenharia.
-                </p>
-                <p>
-                  Interesses atuais: WebAssembly, Rust para sistemas de alto desempenho e compiladores JIT.
+                  Tenho que lembrar de preparar um textinho legal para me apresentar
                 </p>
               </div>
               <div className="mt-8 flex gap-3">
-                <a href="mailto:e-mail@example.com" className="btn-outline text-sm py-2">
+                <a href="mailto:kitsucode@gmail.com" className="btn-outline text-sm py-2">
                   <Mail size={15} /> Entre em contato
                 </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="btn-outline text-sm py-2">
+                <a href="https://github.com/Kitsu42" target="_blank" rel="noopener noreferrer" className="btn-outline text-sm py-2">
                   <Code2 size={15} /> GitHub
                 </a>
               </div>
@@ -170,9 +164,9 @@ export default developer;`}</pre>
                 className="mt-8 grid grid-cols-3 gap-4"
               >
                 {[
-                  { value: '6+', label: 'Anos de experiência' },
-                  { value: '40+', label: 'Projetos entregues' },
-                  { value: '18', label: 'Artigos publicados' },
+                  { value: '1+', label: 'Anos de experiência' },
+                  { value: '??', label: 'Projetos entregues' },
+                  { value: '??', label: 'Artigos no site' },
                 ].map(stat => (
                   <div
                     key={stat.label}
@@ -336,12 +330,12 @@ export default developer;`}</pre>
           <p className="text-slate-400 mb-10 leading-relaxed">
             Estou aberto a oportunidades, colaborações em projetos open source, ou apenas uma conversa sobre tecnologia.
           </p>
-          <a href="mailto:e-mail@example.com" className="btn-primary text-base px-8 py-3 inline-flex">
-            <Mail size={18} /> e-mail@example.com
+          <a href="mailto:kitsucode@gmail.com" className="btn-primary text-base px-8 py-3 inline-flex">
+            <Mail size={18} /> kitsucode@gmail.com
           </a>
           <div className="flex justify-center gap-4 mt-8">
             {[
-              { icon: Code2, href: 'https://github.com', label: 'GitHub' },
+              { icon: Code2, href: 'https://github.com/Kitsu42', label: 'GitHub' },
               { icon: MessageCircle, href: 'https://twitter.com', label: 'Twitter' },
               { icon: Globe, href: 'https://linkedin.com', label: 'LinkedIn' },
             ].map(({ icon: Icon, href, label }) => (

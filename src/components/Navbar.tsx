@@ -37,7 +37,7 @@ export default function Navbar() {
             className="font-mono font-semibold text-lg tracking-tight hover:text-white transition-colors"
             style={{ color: '#00D8FF' }}
           >
-            &lt; Alex /&gt;
+            &lt; Kitsu /&gt;
           </Link>
 
           <div className="hidden md:flex items-center gap-1">
@@ -61,7 +61,7 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="https://github.com"
+              href="https://github.com/Kitsu42"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-slate-400 hover:text-[#00D8FF] transition-colors"
