@@ -20,7 +20,7 @@ export const articles: Article[] = [
     category: 'Math',
     tags: ['Math', 'Axiomas'],
     readTime: 9,
-    image: '../img/Articles/Axiomas.jpg',
+    image: '../../public/img/Articles/Axiomas.jpg',
     contentFile: 'axiomas.md',
   },
 ];
