@@ -20,6 +20,7 @@ export interface Game {
   releaseDate: string;
   updatedAt: string;
   cover: string;
+  gameUrl: string;
   screenshots: string[];
   controls: { key: string; action: string }[];
   status: 'playable' | 'beta' | 'wip';

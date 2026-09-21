@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowLeft, Play, Gamepad2, Calendar, RefreshCw, Maximize2, X } from 'lucide-react';
 import { games } from '../data/games';
 
@@ -18,6 +18,11 @@ export default function GameDetail() {
   const { id } = useParams();
   const game = games.find(g => g.id === id);
   const [playing, setPlaying] = useState(false);
+  const gameFrameRef = useRef<HTMLIFrameElement>(null);
+
+  const enterFullscreen = () => {
+    gameFrameRef.current?.requestFullscreen();
+  };
 
   if (!game) return <Navigate to="/games" replace />;
 
@@ -98,6 +103,35 @@ export default function GameDetail() {
                   </div>
                 </div>
               </div>
+            ) : game.status === 'wip' ? (
+              <div
+                className="rounded-xl overflow-hidden"
+                style={{ background: '#0C1220', border: '1px solid rgba(139,92,246,0.3)' }}
+              >
+                <div
+                  className="flex items-center justify-between px-4 py-3"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+                >
+                  <span className="text-sm font-mono text-slate-400">{game.title} — em desenvolvimento</span>
+                  <button
+                    onClick={() => setPlaying(false)}
+                    className="p-1.5 text-slate-500 hover:text-red-400 transition-colors"
+                    aria-label="Fechar jogo"
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+                <div
+                  className="h-[480px] flex items-center justify-center"
+                  style={{ background: '#060A12' }}
+                >
+                  <div className="text-center px-6">
+                    <Gamepad2 size={40} className="mx-auto mb-4 text-slate-600" />
+                    <p className="font-mono text-sm text-slate-400 mb-2">game_canvas.init()</p>
+                    <p className="text-xs text-slate-600">O jogo ainda está sendo desenvolvido.</p>
+                  </div>
+                </div>
+              </div>
             ) : (
               <div
                 className="rounded-xl overflow-hidden"
@@ -112,7 +146,11 @@ export default function GameDetail() {
                     <span className="text-sm font-mono text-slate-400">{game.title} — executando</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <button className="p-1.5 text-slate-500 hover:text-white transition-colors">
+                    <button
+                      onClick={enterFullscreen}
+                      className="p-1.5 text-slate-500 hover:text-white transition-colors"
+                      aria-label="Tela cheia"
+                    >
                       <Maximize2 size={14} />
                     </button>
                     <button
@@ -123,21 +161,14 @@ export default function GameDetail() {
                     </button>
                   </div>
                 </div>
-                <div
-                  className="h-[480px] flex items-center justify-center"
+                <iframe
+                  ref={gameFrameRef}
+                  src={game.gameUrl}
+                  title={game.title}
+                  allowFullScreen
+                  className="block h-[480px] w-full border-0"
                   style={{ background: '#060A12' }}
-                >
-                  <div className="text-center">
-                    <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                      style={{ background: 'rgba(139,92,246,0.15)', border: '1px solid rgba(139,92,246,0.3)' }}
-                    >
-                      <Gamepad2 size={28} style={{ color: '#8B5CF6' }} />
-                    </div>
-                    <p className="font-mono text-sm text-slate-500 mb-1">game_canvas.init()</p>
-                    <p className="text-xs text-slate-700">O jogo carregaria aqui em produção</p>
-                  </div>
-                </div>
+                />
               </div>
             )}
 
