@@ -1,5 +1,3 @@
-# Axiomas da Matemática
-
 Axiomas são proposições fundamentais assumidas como verdade dentro de uma teoria matemática. Eles não são demonstrados a partir de resultados mais básicos da própria teoria; ao contrário, servem como ponto de partida para a definição de conceitos e para a demonstração de teoremas. Eles são a base para a matemática. 
 
 Diferentes áreas da matemática utilizam diferentes sistemas axiomáticos. Entre os mais importantes estão os axiomas de Peano (aritmética dos números naturais), os postulados de Euclides (geometria euclidiana) e os axiomas de Zermelo–Fraenkel com Escolha (ZFC), que fundamentam grande parte da matemática moderna.
