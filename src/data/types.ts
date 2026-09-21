@@ -7,15 +7,8 @@ export interface Article {
   tags: string[];
   readTime: number;
   image?: string;
-  content: ContentBlock[];
+  contentFile: string;
 }
-
-export type ContentBlock =
-  | { type: 'paragraph'; text: string }
-  | { type: 'heading'; level: 2 | 3; text: string }
-  | { type: 'code'; language: string; filename?: string; code: string }
-  | { type: 'image'; src: string; alt: string; caption?: string }
-  | { type: 'list'; items: string[] };
 
 export interface Game {
   id: string;

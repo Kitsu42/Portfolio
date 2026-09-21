@@ -1,8 +1,15 @@
 import { useParams, Link, Navigate } from 'react-router';
 import { ArrowLeft, ArrowRight, Calendar, Clock, Copy, Check } from 'lucide-react';
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { articles } from '../data/articles';
-import type { ContentBlock } from '../data/types';
+
+const markdownFiles = import.meta.glob('../articles/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
 
 function CodeBlock({ language, filename, code }: { language: string; filename?: string; code: string }) {
   const [copied, setCopied] = useState(false);
@@ -36,35 +43,6 @@ function CodeBlock({ language, filename, code }: { language: string; filename?: 
       <pre>{code}</pre>
     </div>
   );
-}
-
-function renderBlock(block: ContentBlock, i: number) {
-  switch (block.type) {
-    case 'paragraph':
-      return <p key={i}>{block.text}</p>;
-    case 'heading':
-      if (block.level === 2) return <h2 key={i}>{block.text}</h2>;
-      return <h3 key={i}>{block.text}</h3>;
-    case 'code':
-      return <CodeBlock key={i} language={block.language} filename={block.filename} code={block.code} />;
-    case 'image':
-      return (
-        <figure key={i} className="my-6">
-          <img src={block.src} alt={block.alt} className="rounded-lg w-full" />
-          {block.caption && (
-            <figcaption className="mt-2 text-center text-xs text-slate-600">{block.caption}</figcaption>
-          )}
-        </figure>
-      );
-    case 'list':
-      return (
-        <ul key={i}>
-          {block.items.map((item, j) => <li key={j}>{item}</li>)}
-        </ul>
-      );
-    default:
-      return null;
-  }
 }
 
 export default function ArticleDetail() {
@@ -133,7 +111,21 @@ export default function ArticleDetail() {
 
         {/* Content */}
         <article className="prose-content">
-          {article.content.map((block, i) => renderBlock(block, i))}
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              pre: ({ children }) => <>{children}</>,
+              code: ({ className, children, ...props }) => {
+                const language = /language-(\w+)/.exec(className ?? '')?.[1];
+                const code = String(children).replace(/\n$/, '');
+
+                if (!language) return <code {...props}>{children}</code>;
+                return <CodeBlock language={language} code={code} />;
+              },
+            }}
+          >
+            {markdownFiles[`../articles/${article.contentFile}`]}
+          </ReactMarkdown>
         </article>
 
         {/* Tags footer */}

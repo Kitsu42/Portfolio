@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { Search, Clock, Calendar, Tag } from 'lucide-react';
+import { Search, Clock, Calendar, BookOpen } from 'lucide-react';
 import { articles } from '../data/articles';
 
 const categories = ['All', ...Array.from(new Set(articles.map(a => a.category)))];
@@ -19,21 +19,33 @@ export default function Articles() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="dot-grid py-20" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="section-label justify-center">Escrita técnica</div>
+      <div
+        className="relative py-20 overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #070B14 0%, #0A1020 50%, #070B14 100%)',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+        }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at 60% 0%, rgba(0,216,255,0.06) 0%, transparent 60%)',
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-3">
+            <BookOpen size={20} style={{ color: '#00D8FF' }} />
+            <span className="font-mono text-xs text-slate-600 uppercase tracking-widest">Escrita técnica</span>
+          </div>
           <h1
-            className="font-display font-bold text-5xl mt-2 mb-4"
-            style={{ letterSpacing: '-0.02em', color: '#E2E8F0' }}
+            className="font-display font-bold mb-3"
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', letterSpacing: '-0.02em', color: '#E2E8F0' }}
           >
             Articles
           </h1>
-          <p className="text-slate-400 text-lg max-w-lg mx-auto leading-relaxed">
+          <p className="text-slate-400 max-w-xl leading-relaxed">
             Deep dives into software architecture, performance optimization, and the tools I use day-to-day.
           </p>
-          <div className="mt-2">
-            <span className="font-mono text-sm text-slate-600">{articles.length} artigos publicados</span>
-          </div>
         </div>
       </div>
 
