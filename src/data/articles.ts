@@ -20,7 +20,7 @@ export const articles: Article[] = [
     category: 'Math',
     tags: ['Math', 'Axiomas'],
     readTime: 9,
-    image: 'https://imgs.search.brave.com/lLduNGpy0DuF1A13tNfZRryLQWxoVndptEyeQzNF_hQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci8zNTEv/MTg2L0hELXdhbGxw/YXBlci1tYXRoLWVx/dWF0aW9ucy1hYnN0/cmFjdC10aHVtYm5h/aWwuanBn',
+    image: '/img/Articles/Axiomas.jpg',
     contentFile: 'axiomas.md',
   },
 ];
