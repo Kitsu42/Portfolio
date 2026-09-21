@@ -1,0 +1,10 @@
+{
+  "description": "Showcases a professional developer's portfolio with projects, articles, and browser games in a modern, responsive, and user-friendly interface.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
