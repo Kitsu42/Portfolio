@@ -7,6 +7,7 @@ const links = [
   { to: '/articles', label: 'Articles', end: false },
   { to: '/games', label: 'Games', end: false },
   { to: '/projects', label: 'Projects', end: false },
+  { to: '/design', label: 'Design', end: false },
 ];
 
 export default function Navbar() {

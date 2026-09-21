@@ -1,13 +1,6 @@
 import { Link } from 'react-router';
 import { Code2, MessageCircle, Globe, Mail } from 'lucide-react';
 
-const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/articles', label: 'Articles' },
-  { to: '/games', label: 'Games' },
-  { to: '/projects', label: 'Projects' },
-];
-
 const socialLinks = [
   { icon: Code2, href: 'https://github.com', label: 'GitHub' },
   { icon: MessageCircle, href: 'https://twitter.com', label: 'Twitter' },
@@ -28,35 +21,11 @@ export default function Footer() {
               className="font-mono font-semibold text-lg block mb-3"
               style={{ color: '#00D8FF' }}
             >
-              &lt; Alex /&gt;
+              &lt; Kitsu /&gt;
             </span>
-            <p className="text-sm text-slate-500 leading-relaxed max-w-xs">
-              Full Stack Developer building web applications, developer tools, and browser games. Open to collaboration.
-            </p>
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">
-              Navigation
-            </h4>
-            <ul className="space-y-2">
-              {navLinks.map(l => (
-                <li key={l.to}>
-                  <Link
-                    to={l.to}
-                    className="text-sm text-slate-400 hover:text-[#00D8FF] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">
-              Connect
-            </h4>
             <div className="flex gap-3">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a

@@ -7,6 +7,7 @@ import Games from './pages/Games';
 import GameDetail from './pages/GameDetail';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
+import Design from './pages/Design';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: 'games/:id', Component: GameDetail },
       { path: 'projects', Component: Projects },
       { path: 'projects/:id', Component: ProjectDetail },
+      { path: 'design', Component: Design },
     ],
   },
 ]);
