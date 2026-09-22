@@ -12,6 +12,6 @@ export const designWorks: DesignWork[] = [
     title: 'little girl with a pumpkin head',
     category: 'Desenho manual',
     description: 'Um desenho feito a mão colocado simplesmente para começar a subir minhas artes mesmo aqui.',
-    image: 'img/Design/little-girl-with-a-pumpkin-head.jpeg',
+    image: '/img/Design/little-girl-with-a-pumpkin-head.jpeg',
   },
 ];
