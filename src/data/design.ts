@@ -8,10 +8,10 @@ export interface DesignWork {
 
 export const designWorks: DesignWork[] = [
   {
-    id: 'neon-ritual',
-    title: 'Neon Ritual',
-    category: 'Direção de arte',
-    description: 'Exploração visual de luz, textura e formas orgânicas em uma identidade noturna.',
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=1600&fit=crop&auto=format',
+    id: 'little girl with a pumpkin head',
+    title: 'little girl with a pumpkin head',
+    category: 'Desenho manual',
+    description: 'Um desenho feito a mão colocado simplesmente para começar a subir minhas artes mesmo aqui.',
+    image: 'img/Design/little-girl-with-a-pumpkin-head.jpeg',
   },
 ];
