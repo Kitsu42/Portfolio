@@ -135,6 +135,7 @@
 
 # Keep the article cover available to deployment providers that do not hydrate Git LFS.
 public/img/Articles/Axiomas.jpg -filter -diff -merge
+public/img/Design/little-girl-with-a-pumpkin-head.jpeg -filter -diff -merge
 
 # ---------------------------------------------------------------------------
 # CAD & Scientific
