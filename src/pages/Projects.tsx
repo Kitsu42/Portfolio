@@ -4,13 +4,12 @@ import { Search, Layers, ExternalLink, Download } from 'lucide-react';
 import { projects } from '../data/projects';
 
 const allTechs = ['All', ...Array.from(new Set(projects.flatMap(p => p.technologies)))];
-const allStatuses = ['All', 'active', 'beta', 'complete', 'archived'];
+const allStatuses = ['All', 'active', 'beta', 'complete'];
 
 const statusStyle: Record<string, { className: string; label: string }> = {
   active: { className: 'tag-green', label: 'Ativo' },
   beta: { className: 'tag-orange', label: 'Beta' },
   complete: { className: 'tag', label: 'Completo' },
-  archived: { className: 'tag-purple', label: 'Arquivado' },
 };
 
 export default function Projects() {

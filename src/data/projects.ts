@@ -27,4 +27,25 @@ export const projects: Project[] = [
     requirements: ['Node.js 20+', 'PostgreSQL 15+', 'Redis 7+'],
     updatedAt: '2026-09-10',
   },
+  {
+  id: 'Discord Bot',
+  title: 'Discord Bot',
+  description: 'Um bot do Discord.',
+  longDescription: 'DevFlow is an opinionated project management tool designed specifically for software development teams. It integrates directly with GitHub to automatically link commits, PRs, and issues to tasks, provides real-time burndown charts, and supports custom workflows with configurable columns and automation rules.',
+  features: [
+    'Um bot do Discord'
+  ],
+  technologies: [],
+  status: 'beta',
+  version: '2.4.1',
+  image: '/img/Projects/discord-bot.jpg',
+  screenshots: [
+    '/img/Projects/discord-bot.jpg',
+    '/img/Projects/discord-bot.jpg',
+  ],
+  repoUrl: 'https://github.com/Kitsu42/Discord_Bot',
+  demoUrl: 'https://github.com/Kitsu42/Discord_Bot',
+  requirements: ['Nada'],
+  updatedAt: '2026-09-10',
+  },
 ];
