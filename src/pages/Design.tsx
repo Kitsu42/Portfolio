@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Image, Maximize2, X } from 'lucide-react';
+import { FileText, Image, Maximize2, X } from 'lucide-react';
 import { designWorks, type DesignWork } from '../data/design';
 
 export default function Design() {
@@ -63,18 +63,41 @@ export default function Design() {
               type="button"
               onClick={() => setSelectedWork(work)}
               className="group relative block w-full overflow-hidden rounded-xl text-left break-inside-avoid mb-5 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D8FF]"
-              aria-label={`Expandir ${work.title}`}
+              aria-label={`Abrir projeto ${work.title}`}
             >
-              <img
-                src={work.image}
-                alt={work.title}
-                className="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
-                loading="lazy"
-              />
+              {work.images.length > 0 ? (
+                <img
+                  src={work.images[0]}
+                  alt={work.title}
+                  className="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="flex aspect-[4/3] flex-col items-center justify-center gap-3 bg-slate-900 text-[#C4B5FD]">
+                  <FileText size={40} />
+                  <span className="font-mono text-xs uppercase tracking-widest">Projeto em PDF</span>
+                </div>
+              )}
+              {(work.images.length > 1 || work.pdf) && (
+                <div className="absolute top-3 left-3 flex gap-2">
+                  {work.images.length > 1 && (
+                    <span className="flex items-center gap-1 rounded-full bg-black/70 px-2 py-1 text-xs text-white">
+                      <Image size={13} />
+                      {work.images.length}
+                    </span>
+                  )}
+                  {work.pdf && (
+                    <span className="flex items-center gap-1 rounded-full bg-black/70 px-2 py-1 text-xs text-white">
+                      <FileText size={13} />
+                      PDF
+                    </span>
+                  )}
+                </div>
+              )}
               <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity" style={{ background: 'linear-gradient(to top, rgba(7,11,20,0.92), transparent 58%)' }}>
                 <span className="text-[0.65rem] font-mono uppercase tracking-widest text-[#C4B5FD] mb-1">{work.category}</span>
                 <span className="font-display text-xl font-semibold text-white">{work.title}</span>
-                <Maximize2 size={16} className="absolute top-4 right-4 text-white/80" />
+                <Maximize2 size={16} className="absolute bottom-5 right-5 text-white/80" />
               </div>
             </button>
           ))}
@@ -94,16 +117,43 @@ export default function Design() {
             type="button"
             onClick={() => setSelectedWork(null)}
             className="absolute top-5 right-5 p-2 text-slate-400 hover:text-white transition-colors"
-            aria-label="Fechar imagem expandida"
+            aria-label="Fechar projeto"
           >
             <X size={26} />
           </button>
-          <div className="relative max-h-full max-w-5xl" onClick={event => event.stopPropagation()}>
-            <img src={selectedWork.image} alt={selectedWork.title} className="max-h-[82vh] max-w-full object-contain rounded-lg shadow-2xl" />
+          <div className="relative max-h-full w-full max-w-5xl overflow-y-auto" onClick={event => event.stopPropagation()}>
             <div className="pt-4">
               <p className="text-xs font-mono uppercase tracking-widest text-[#C4B5FD] mb-1">{selectedWork.category}</p>
               <h2 className="font-display text-2xl font-semibold text-white">{selectedWork.title}</h2>
               <p className="mt-1 text-sm text-slate-400">{selectedWork.description}</p>
+            </div>
+            <div className="mt-4 space-y-4">
+              {selectedWork.images.map((image, index) => (
+                <img
+                  key={`${image}-${index}`}
+                  src={image}
+                  alt={`${selectedWork.title}: imagem ${index + 1}`}
+                  className="max-h-[82vh] max-w-full rounded-lg object-contain shadow-2xl"
+                />
+              ))}
+              {selectedWork.pdf && (
+                <section aria-label={`PDF de ${selectedWork.title}`}>
+                  <iframe
+                    src={selectedWork.pdf}
+                    title={`PDF: ${selectedWork.title}`}
+                    className="h-[70vh] w-full rounded-lg bg-white"
+                  />
+                  <a
+                    href={selectedWork.pdf}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 inline-flex items-center gap-2 text-sm text-[#C4B5FD] hover:text-white"
+                  >
+                    <FileText size={16} />
+                    Abrir PDF em nova aba
+                  </a>
+                </section>
+              )}
             </div>
           </div>
         </div>
