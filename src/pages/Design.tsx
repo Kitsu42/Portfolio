@@ -1,6 +1,81 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FileText, Image, Maximize2, X } from 'lucide-react';
+import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { designWorks, type DesignWork } from '../data/design';
+
+GlobalWorkerOptions.workerSrc = pdfWorker;
+
+function PdfPreview({ url, title }: { url: string; title: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [aspectRatio, setAspectRatio] = useState(1 / 1.414);
+
+  useEffect(() => {
+    let cancelled = false;
+    let cancelRender: (() => void) | undefined;
+    const loadingTask = getDocument({ url });
+
+    void loadingTask.promise
+      .then(async document => {
+        const page = await document.getPage(1);
+        if (cancelled) return;
+
+        const viewport = page.getViewport({ scale: 1.5 });
+        const canvas = canvasRef.current;
+        const context = canvas?.getContext('2d');
+        if (!canvas || !context) {
+          throw new Error('Não foi possível preparar o canvas para a prévia do PDF.');
+        }
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        setAspectRatio(viewport.width / viewport.height);
+
+        const renderTask = page.render({ canvas, canvasContext: context, viewport });
+        cancelRender = () => renderTask.cancel();
+        await renderTask.promise;
+        if (!cancelled) setStatus('ready');
+      })
+      .catch((error: unknown) => {
+        if (cancelled) return;
+        console.error(`Não foi possível gerar a prévia do PDF "${title}".`, error);
+        setStatus('error');
+      });
+
+    return () => {
+      cancelled = true;
+      cancelRender?.();
+      void loadingTask.destroy().catch(error => {
+        console.error(`Não foi possível liberar o PDF "${title}".`, error);
+      });
+    };
+  }, [title, url]);
+
+  return (
+    <div
+      className="relative w-full overflow-hidden bg-slate-900"
+      style={{ aspectRatio }}
+      aria-label={`Prévia da primeira página: ${title}`}
+    >
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        className={`absolute inset-0 block h-full w-full object-contain transition-opacity duration-300 group-hover:scale-[1.03] ${
+          status === 'ready' ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+      {status !== 'ready' && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-[#C4B5FD]">
+          <FileText size={40} />
+          <span className="font-mono text-xs uppercase tracking-widest">
+            {status === 'error' ? 'Prévia indisponível' : 'Carregando prévia'}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Design() {
   const [selectedWork, setSelectedWork] = useState<DesignWork | null>(null);
@@ -72,6 +147,8 @@ export default function Design() {
                   className="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
                 />
+              ) : work.pdf ? (
+                <PdfPreview url={work.pdf} title={work.title} />
               ) : (
                 <div className="flex aspect-[4/3] flex-col items-center justify-center gap-3 bg-slate-900 text-[#C4B5FD]">
                   <FileText size={40} />
